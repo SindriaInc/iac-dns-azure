@@ -1,5 +1,5 @@
-#=immutables
-immutables:
+#=azure
+azure:
   0:
     name: "docker-node"
     blueprint: "blueprint-snapshot"
