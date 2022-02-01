@@ -65,13 +65,8 @@ def create_azure_dns(entry):
     if (service.check_vm_name(entry)):
         value = service.find_public_ip_address_by_name(entry['vm_name'])
 
-    #print(value)
-
     # Create new dns record
-
-    # az network dns record-set a add-record -g MyResourceGroup -z contoso.xyz -n www -a 10.10.10.10
-
-    stdout = subprocess.check_output(['az', 'network', 'dns', 'record-set', entry['type'], 'add-record', '-g', AZURE_RESOURCE_GROUP, '-z', domain, '-n', entry['name'], '-a', value], universal_newlines=True)
+    stdout = subprocess.check_output(['az', 'network', 'dns', 'record-set', entry['type'], 'add-record', '-g', rg, '-z', domain, '-n', entry['name'], '-a', value, '--ttl', ttl], universal_newlines=True)
     print(stdout)
 
 
