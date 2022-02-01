@@ -61,6 +61,14 @@ defaults:
       rg: "example-rg"
       vpc: "example-rg"
       subnet: "example-rg"
+  dns:
+    route53:
+      domain: "example.com"
+      ttl: "60"
+    azure:
+      domain: "example.com"
+      ttl: "60"
+      rg: "example-rg"
 
 
 # Apps configuration

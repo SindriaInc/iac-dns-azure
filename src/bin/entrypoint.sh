@@ -12,40 +12,52 @@ NOW=$(date "+%Y-%m-%d_%H-%M-%S")
 
 if [ "${IAC_MODE}" == "standalone" ]; then
 
-  # Validation immutable name
-  if [ "${IMMUTABLE_NAME}" == "" ]; then
-      echo -e "${YELLOW}IMMUTABLE_NAME env must be provided${NC}"
+  # Validation entry name
+  if [ "${ENTRY_NAME}" == "" ]; then
+      echo -e "${YELLOW}ENTRY_NAME env must be provided${NC}"
       exit 1
   fi
 
-  # Validation immutable refer
-  if [ "${IMMUTABLE_REFER}" == "" ]; then
-      echo -e "${YELLOW}IMMUTABLE_REFER env must be provided${NC}"
+  # Validation entry type
+  if [ "${ENTRY_TYPE}" == "" ]; then
+      echo -e "${YELLOW}ENTRY_TYPE env must be provided${NC}"
       exit 1
   fi
 
-  # Validation immutable type
-  if [ "${IMMUTABLE_TYPE}" == "" ]; then
-    IMMUTABLE_TYPE="azure"
+  # Validation entry ttl
+  if [ "${ENTRY_TTL}" == "" ]; then
+    ENTRY_TTL="60"
   fi
 
-  # Validation immutable bundle
-  if [ "${IMMUTABLE_BUNDLE}" == "" ]; then
-    IMMUTABLE_BUNDLE="micro_2_0"
+  # Validation entry value
+  if [ "${ENTRY_VALUE}" == "" ]; then
+    ENTRY_VALUE="10.10.10.10"
   fi
 
-  # Validation immutable zone
-  if [ "${IMMUTABLE_ZONE}" == "" ]; then
-    IMMUTABLE_ZONE="eu-central-1a"
+  # Validation entry domain
+  if [ "${ENTRY_DOMAIN}" == "" ]; then
+    ENTRY_DOMAIN="example.com"
+  fi
+
+  # Validation entry rg
+  if [ "${ENTRY_RG}" == "" ]; then
+    ENTRY_RG="example-rg"
+  fi
+
+  # Validation entry vm_name
+  if [ "${VM_NAME}" == "" ]; then
+    VM_NAME="docker-node-01"
   fi
 
 
-  # Setting immutable values - if deployments.yaml is overwritten by volume this simply doesn't take any effect. (it's a feature not a bug)
-  sed -i -E "s|@@NAME@@|${IMMUTABLE_NAME}|g" /var/www/app/config/deployments.yaml
-  sed -i -E "s|@@REFER@@|${IMMUTABLE_REFER}|g" /var/www/app/config/deployments.yaml
-  sed -i -E "s|@@TYPE@@|${IMMUTABLE_TYPE}|g" /var/www/app/config/deployments.yaml
-  sed -i -E "s|@@BUNDLE@@|${IMMUTABLE_BUNDLE}|g" /var/www/app/config/deployments.yaml
-  sed -i -E "s|@@ZONE@@|${IMMUTABLE_ZONE}|g" /var/www/app/config/deployments.yaml
+  # Setting entry values - if dns.yaml is overwritten by volume this simply doesn't take any effect. (it's a feature not a bug)
+  sed -i -E "s|@@NAME@@|${ENTRY_NAME}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@TYPE@@|${ENTRY_TYPE}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@TTL@@|${ENTRY_TTL}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@VALUE@@|${ENTRY_VALUE}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@DOMAIN@@|${ENTRY_DOMAIN}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@RG@@|${ENTRY_RG}|g" /var/www/app/config/dns.yaml
+  sed -i -E "s|@@VM_NAME@@|${VM_NAME}|g" /var/www/app/config/dns.yaml
 else
   # Cleanup config directory
   rm -Rf /var/www/app/config
@@ -57,5 +69,5 @@ else
   cp ${IAC_INFRA_NAME}/config/* ../config
 fi
 
-# Run deploy immutables
+# Run dns azure
 python /var/www/app/app/main.py

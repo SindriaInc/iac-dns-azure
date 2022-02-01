@@ -2,7 +2,9 @@
 azure:
   0:
     name: "@@NAME@@"
-    blueprint: "@@BLUEPRINT@@"
     type: "@@TYPE@@"
-    bundle: "@@BUNDLE@@"
-    region: "@@REGION@@"
+    ttl: "@@TTL@@"
+    value: "@@VALUE@@"
+    domain: "@@DOMAIN@@"
+    rg: "@@RG@@"
+    vm_name: "@@VM_NAME@@"

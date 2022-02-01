@@ -27,18 +27,20 @@ List of required envs. This envs will be set on your pipeline variables or in yo
 | IAC_INFRA_NAME                     | repo-slug                   |
 | IAC_LIVE_CACHE                     | bucket-name                 |
 | IAC_CURRENT_INFRA                  | bucket-name                 |
-| IMMUTABLE_NAME                     | resource-name               |
-| IMMUTABLE_REFER                    | blueprint-name              |
-| IMMUTABLE_TYPE                     | resource-type               |
-| IMMUTABLE_BUNDLE                   | resource-bundle             |
-| IMMUTABLE_ZONE                     | cloud-provider-zone         |
+| ENTRY_NAME                         | www                         |
+| ENTRY_TYPE                         | A                           |
+| ENTRY_TTL                          | 60                          |
+| ENTRY_VALUE                        | 10.10.10.10                 |
+| ENTRY_DOMAIN                       | example.com                 |
+| ENTRY_RG                           | example-rg                  |
+| VM_NAME                            | docker-node-01              |
 
 
 ## Usage
 
 Paste this command in your pipeline step:
 
-`docker run --rm -t --env IAC_MODE=${IAC_MODE} --env AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID} --env AZURE_CLIENT_ID=${AZURE_CLIENT_ID} --env AZURE_SECRET=${AZURE_SECRET} --env AZURE_TENANT=${AZURE_TENANT} --env AZURE_RESOURCE_GROUP=${AZURE_RESOURCE_GROUP} --env AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --env AZURE_STORAGE_ACCESS_KEY=${AZURE_STORAGE_ACCESS_KEY} --env AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING} --env IAC_GIT_USERNAME=${IAC_GIT_USERNAME} --env IAC_GIT_PASSWORD=${IAC_GIT_PASSWORD} --env IAC_GIT_PROVIDER=${IAC_GIT_PROVIDER} --env IAC_GIT_NAMESPACE=${IAC_GIT_NAMESPACE} --env IAC_INFRA_NAME=${IAC_INFRA_NAME} --env IAC_LIVE_CACHE=${IAC_LIVE_CACHE} --env IAC_CURRENT_INFRA=${IAC_CURRENT_INFRA} --env IMMUTABLE_NAME=${IMMUTABLE_NAME} --env IMMUTABLE_REFER=${IMMUTABLE_REFER} --env IMMUTABLE_TYPE=${IMMUTABLE_TYPE} --env IMMUTABLE_BUNDLE=${IMMUTABLE_BUNDLE} --env IMMUTABLE_ZONE=${IMMUTABLE_ZONE} sindriainc/iac-dns-azure:1.0.0`
+`docker run --rm -t --env IAC_MODE=${IAC_MODE} --env AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID} --env AZURE_CLIENT_ID=${AZURE_CLIENT_ID} --env AZURE_SECRET=${AZURE_SECRET} --env AZURE_TENANT=${AZURE_TENANT} --env AZURE_RESOURCE_GROUP=${AZURE_RESOURCE_GROUP} --env AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT} --env AZURE_STORAGE_ACCESS_KEY=${AZURE_STORAGE_ACCESS_KEY} --env AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING} --env IAC_GIT_USERNAME=${IAC_GIT_USERNAME} --env IAC_GIT_PASSWORD=${IAC_GIT_PASSWORD} --env IAC_GIT_PROVIDER=${IAC_GIT_PROVIDER} --env IAC_GIT_NAMESPACE=${IAC_GIT_NAMESPACE} --env IAC_INFRA_NAME=${IAC_INFRA_NAME} --env IAC_LIVE_CACHE=${IAC_LIVE_CACHE} --env IAC_CURRENT_INFRA=${IAC_CURRENT_INFRA} --env ENTRY_NAME=${ENTRY_NAME} --env ENTRY_TYPE=${ENTRY_TYPE} --env ENTRY_TTL=${ENTRY_TTL} --env ENTRY_VALUE=${ENTRY_VALUE} --env ENTRY_DOMAIN=${ENTRY_DOMAIN} --env ENTRY_RG=${ENTRY_RG} --env VM_NAME=${VM_NAME} sindriainc/iac-dns-azure:1.0.0`
 
 OR use the helper script:
 

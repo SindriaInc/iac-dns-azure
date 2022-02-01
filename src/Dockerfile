@@ -7,8 +7,8 @@ ARG HOST_USER_UID
 ARG TIMEZONE
 
 LABEL \
-	name="deploy-immutables-azure" \
-	image="sindriainc/deploy-immutables-azure" \
+	name="iac-dns-azure" \
+	image="sindriainc/iac-dns-azure" \
 	tag="${TAG_VERSION}" \
 	vendor="sindria"
 
